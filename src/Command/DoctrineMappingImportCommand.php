@@ -21,7 +21,15 @@ class DoctrineMappingImportCommand extends Command
 {
     private array $driverMap = [
         'pdo_mysql' => "MySQL",
+        'mysqli' => "MySQL",
         'pdo_pgsql' => "PostgreSQL",
+        'pgsql' => "PostgreSQL",
+        'sqlsrv' => "SQLServer",
+        'pdo_sqlsrv' => "SQLServer",
+        'pgsql' => "Oracle",
+        'ibm_db2' => "IBMDB2",
+        'pdo_sqlite' => "Sqlite",
+        'sqlite3' => "Sqlite",
     ];
 
     /**
