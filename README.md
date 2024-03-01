@@ -5,7 +5,7 @@ instead of `php bin/console doctrine:mapping:import App\\Entity attribute --path
 
 在最新版本中删除了 `doctrine:mapping:import` 命令，无法从已经存在的数据库导入生成Entity
 
-目前支持MySQL, PostgreSQL 数据库导入
+目前支持MySQL, PostgreSQL, SQLServer 数据库导入
 
 > 字段支持：
 >* 在MySQL的[数据类型](https://dev.mysql.com/doc/refman/8.3/en/data-types.html "数据类型")中，不支持`bit`与`enum`类型，其他数据类型如果有相似类型就转成相似类型，例如：double转成float
@@ -14,7 +14,7 @@ instead of `php bin/console doctrine:mapping:import App\\Entity attribute --path
 
 >命令行参数：
 >* namesapce Entity类的命名空间 默认App\Entity
->* type 数据库字段描述信息 attribute, xml, yaml, php 默认attribute
+>* type 数据库字段描述信息 attribute, xml, yaml, php 默认attribute，目前只支持attribute
 >* --path=src/Entity Entity类文件存放路径 默认 src/Entity
 >* --fcfirst=true 生成symfony6版本Entity（私有属性以驼峰命名规则, 项目迁移业务代码可以无缝衔接）, 默认生成symfony7版本(make:entity生成的Entity中私有属性保留下划线 )
 >* --table=test,test1 导入指定表，生成对应的Entity,Repository
