@@ -26,7 +26,7 @@ class DoctrineMappingImportCommand extends Command
         'pgsql' => "PostgreSQL",
         'sqlsrv' => "SQLServer",
         'pdo_sqlsrv' => "SQLServer",
-        'pgsql' => "Oracle",
+        'oci8' => "Oracle",
         'ibm_db2' => "IBMDB2",
         'pdo_sqlite' => "Sqlite",
         'sqlite3' => "Sqlite",

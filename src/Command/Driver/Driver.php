@@ -198,7 +198,7 @@ EOF;
 
     public function upperName(string $name): string
     {
-        return str_replace("_", "", ucwords($name, '_'));
+        return str_replace("_", "", ucwords(strtolower($name), '_'));
     }
 
     public function upper(string $name): string
