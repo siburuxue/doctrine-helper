@@ -1,4 +1,4 @@
-# <center>doctrine-helper</center>
+# doctrine-helper
 instead of `php bin/console doctrine:mapping:import App\\Entity attribute --path=src/Entity
 
 在symfony7版本中默认使用doctrine/orm 3.0版本
