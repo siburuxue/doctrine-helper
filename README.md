@@ -18,7 +18,7 @@ instead of `php bin/console doctrine:mapping:import App\\Entity attribute --path
 >* namesapce Entity类的命名空间 默认App\Entity
 >* type 数据库字段描述信息 attribute, xml, yaml, php 默认attribute，目前只支持attribute
 >* --path=src/Entity Entity类文件存放路径 默认 src/Entity
->* --fcfirst=true 生成symfony6版本Entity（私有属性以驼峰命名规则, 项目迁移业务代码可以无缝衔接）, 默认生成symfony7版本(make:entity生成的Entity中私有属性保留下划线 )
+>* --ucfirst=true 生成symfony6版本Entity（私有属性以驼峰命名规则, 项目迁移业务代码可以无缝衔接）, 默认生成symfony7版本(make:entity生成的Entity中私有属性保留下划线 )
 >* --table=test,test1 导入指定表，生成对应的Entity,Repository
 >* --without-table-prefix=eq_ 生成Entity时忽略表前缀eq_（eq_test => src/Entity/Test.php）
 
