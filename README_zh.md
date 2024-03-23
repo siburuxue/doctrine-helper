@@ -31,6 +31,11 @@
 ### Sqlite
 - 支持整数、实数、浮点数、双精度、小数、字符、二进制大对象、文本、日期、日期时间和布尔类型
 
+## 安装
+```php
+composer require doctrine/helper
+```
+
 ## 命令行选项
 
 - `namespace`：实体类的命名空间（默认为`App\Entity`）
@@ -41,3 +46,6 @@
 - `--without-table-prefix`：生成实体类时忽略表前缀
 
 欢迎探索并利用此工具来管理Symfony应用程序中的Doctrine映射！
+
+## 联系我们（QQ）
+<img src="./QQ.jpg" width="400px"/>

@@ -31,6 +31,11 @@ This tool provides an alternative to the `php bin/console doctrine:mapping:impor
 ### Sqlite
 - Supports integer, real, float, double, decimal, varchar, blob, text, date, datetime, and boolean types
 
+## Install
+```php
+composer require doctrine/helper
+```
+
 ## Command Line Options
 
 - `namespace`: The namespace for the Entity class (default: `App\Entity`)
@@ -41,3 +46,6 @@ This tool provides an alternative to the `php bin/console doctrine:mapping:impor
 - `--without-table-prefix`: Ignore table prefix when generating Entities
 
 Feel free to explore and utilize this tool for managing Doctrine mappings in your Symfony applications!
+
+## Contact Us(QQ)
+<img src="./QQ.jpg" width="400px"/>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Driver;
+namespace Doctrine\Helper\Driver;
 
 class Sqlite extends Driver
 {

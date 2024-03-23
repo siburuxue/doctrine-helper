@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Command;
+namespace Doctrine\Helper\Command;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,14 +26,10 @@ class DoctrineMappingImportCommand extends Command
         'sqlsrv' => "SQLServer",
         'pdo_sqlsrv' => "SQLServer",
         'oci8' => "Oracle",
-        'ibm_db2' => "IBMDB2",
         'pdo_sqlite' => "Sqlite",
         'sqlite3' => "Sqlite",
     ];
 
-    /**
-     * @throws Exception
-     */
     public function __construct(
         private readonly Connection $connection,
         private readonly KernelInterface $kernel
@@ -58,6 +53,10 @@ class DoctrineMappingImportCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $database = $this->connection->getDatabase();
         $param = $this->connection->getParams();
+        if(!isset($this->driverMap[$param['driver']])){
+            $io->error("Unsupported Driver: {$param['driver']}");
+            return Command::FAILURE;
+        }
         $driver = $this->driverMap[$param['driver']];
         $root = $this->kernel->getProjectDir();
         $entityDir = $root . "/src/Entity/";
@@ -80,7 +79,7 @@ class DoctrineMappingImportCommand extends Command
         $tableList = (string)$input->getOption('table');
         $ucfirst = (string)$input->getOption('ucfirst');
         $withoutTablePrefix = (string)$input->getOption('without-table-prefix');
-        $action = "\App\Command\Driver\\$driver::create";
+        $action = "\Doctrine\Helper\Driver\\$driver::create";
         $action(
             $namespace,
             $type,
