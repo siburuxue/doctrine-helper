@@ -35,7 +35,7 @@
 
 ## 安装
 ```php
-composer require doctrine/helper
+composer require database/doctrine-helper
 ```
 
 ## 命令行选项

@@ -1,10 +1,10 @@
 {
-	"name": "doctrine/helper",
+	"name": "database/doctrine-helper",
 	"description": "instead of `php bin/console doctrine:mapping:import`",
 	"keywords": [
 		"doctrine",
 		"doctrine-helper",
-		"import",
+		"database",
 		"create entity from the existing database."
 	],
 	"license": "Apache-2.0",

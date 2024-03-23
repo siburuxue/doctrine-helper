@@ -34,7 +34,7 @@ This tool provides an alternative to the `php bin/console doctrine:mapping:impor
 
 ## Install
 ```php
-composer require doctrine/helper
+composer require database/doctrine-helper
 ```
 
 ## Command Line Options
