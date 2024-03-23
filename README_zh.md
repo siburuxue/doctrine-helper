@@ -1,5 +1,7 @@
 # Doctrine Helper
 
+[英文](README.md) | 中文
+
 该工具提供了在Symfony 7中替代`php bin/console doctrine:mapping:import App\\Entity attribute --path=src/Entity`命令的选择，因为在最新版本中移除了`doctrine:mapping:import`命令。它允许将现有数据库中的实体映射导入Symfony应用程序。
 
 ## 支持的数据库
