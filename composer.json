@@ -1,5 +1,5 @@
 {
-	"name": "database/doctrine-helper",
+	"name": "siburuxue/doctrine-helper",
 	"description": "instead of `php bin/console doctrine:mapping:import`",
 	"keywords": [
 		"doctrine",
