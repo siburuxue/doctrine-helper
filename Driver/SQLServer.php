@@ -6,30 +6,6 @@ use Doctrine\DBAL\Connection;
 
 class SQLServer extends Driver
 {
-    public function __construct(
-        string $namespace,
-        string $type,
-        string $tableList,
-        string $ucfirst,
-        string $withoutTablePrefix,
-        string $database,
-        string $entityDir,
-        string $repositoryDir,
-        Connection $connection,
-    ) {
-        parent::__construct(
-            $namespace,
-            $type,
-            $tableList,
-            $ucfirst,
-            $withoutTablePrefix,
-            $database,
-            $entityDir,
-            $repositoryDir,
-            $connection,
-        );
-    }
-
     public function getTableList(): array
     {
         $rs = $this->connection->fetchAllAssociative("SELECT name FROM sys.sysobjects Where xtype='U' ORDER BY name");

@@ -2,9 +2,10 @@
 
 namespace Doctrine\Helper\Driver;
 
+use Doctrine\DBAL\Connection;
+
 class Sqlite extends Driver
 {
-
     public function getTableList(): array
     {
         $sql = <<<EOF

@@ -6,30 +6,6 @@ use Doctrine\DBAL\Connection;
 
 class Oracle extends Driver
 {
-    public function __construct(
-        string $namespace,
-        string $type,
-        string $tableList,
-        string $ucfirst,
-        string $withoutTablePrefix,
-        string $database,
-        string $entityDir,
-        string $repositoryDir,
-        Connection $connection,
-    ) {
-        parent::__construct(
-            $namespace,
-            $type,
-            $tableList,
-            $ucfirst,
-            $withoutTablePrefix,
-            $database,
-            $entityDir,
-            $repositoryDir,
-            $connection,
-        );
-    }
-
     public function getTableList(): array
     {
         $rs = $this->connection->fetchAllAssociative("SELECT TABLE_NAME FROM sys.user_tables");

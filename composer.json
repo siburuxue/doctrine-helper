@@ -26,8 +26,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Doctrine\\Helper\\Driver\\": "",
-			"Doctrine\\Helper\\Command\\": ""
+			"Doctrine\\Helper\\Driver\\": "Driver/",
+			"Doctrine\\Helper\\Command\\": "Command/"
 		}
 	}
 }
