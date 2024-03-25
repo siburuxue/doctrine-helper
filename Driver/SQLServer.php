@@ -256,7 +256,7 @@ EOF;
                     }
                 }
             }
-            $functionName = $this->upperName($columnName);
+            $functionName = $this->upperName($item['COLUMN_NAME']);
             if(in_array($type, ["int", "smallint", "tinyint", "bigint", "smallmoney", "money", "float", "real", "numeric", "decimal", "char", "bit",
                 "varchar", "nchar", "uniqueidentifier", "nvarchar", "date", "time", "datetime", "datetime2", "datetimeoffset", "smalldatetime"])){
                 $getSet .= "    public function get{$functionName}(): ?{$varType}" . PHP_EOL;

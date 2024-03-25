@@ -238,7 +238,7 @@ EOF;
                     }
                 }
             }
-            $functionName = $this->upperName($columnName);
+            $functionName = $this->upperName($item['COLUMN_NAME']);
             if(in_array($type, ["CHAR", "NCHAR", "VARCHAR2", "VARCHAR", "NVARCHAR2", 'NUMBER', "FLOAT", "BINARY_FLOAT", "BINARY_DOUBLE"]) || str_starts_with($type, "TIMESTAMP")){
                 $getSet .= "    public function get{$functionName}(): ?{$varType}" . PHP_EOL;
                 $getSet .= "    {" . PHP_EOL;

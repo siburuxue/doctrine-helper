@@ -181,7 +181,7 @@ class MySQL extends Driver
                     }
                 }
             }
-            $functionName = $this->upperName($columnName);
+            $functionName = $this->upperName($item['COLUMN_NAME']);
             if(in_array($type, ["int", "smallint", "bigint", "tinyint", "mediumint", "float", "double", "decimal", "char",
                 "varchar", "text", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
                 $getSet .= "    public function get{$functionName}(): ?{$varType}" . PHP_EOL;
