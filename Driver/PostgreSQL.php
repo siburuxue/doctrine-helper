@@ -298,7 +298,7 @@ EOF;
                     }
                 }
             }
-            $functionName = $this->upperName($item['COLUMN_NAME']);
+            $functionName = $this->upperName($item['column_name']);
             if(in_array($type, ["integer", "smallint", "bigint", "float", "double precision", "decimal", "money", "numeric", "real", "character varying", "character", "char",
                 "varchar", "text", "json", 'boolean', 'uuid',
                 "date", "time without time zone", "time with time zone", "timestamp without time zone", "timestamp with time zone", "interval"])){
