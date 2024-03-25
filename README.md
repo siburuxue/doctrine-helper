@@ -33,8 +33,14 @@ This tool provides an alternative to the `php bin/console doctrine:mapping:impor
 - Supports integer, real, float, double, decimal, varchar, blob, text, date, datetime, and boolean types
 
 ## Install
-```php
+```shell
 composer require siburuxue/doctrine-helper
+```
+
+## Synchronize database tables to the project
+```shell
+php bin/console doctrine-helper:mapping:import App\\Entity attribute --path=src/Entity --ucfrist=true --table=dict,log --without-table-prefix=eq_
+php bin/console doctrine-helper:mapping:import --ucfirst=true
 ```
 
 ## Command Line Options

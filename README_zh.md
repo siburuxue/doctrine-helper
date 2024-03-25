@@ -34,8 +34,14 @@
 - 支持整数、实数、浮点数、双精度、小数、字符、二进制大对象、文本、日期、日期时间和布尔类型
 
 ## 安装
-```php
+```shell
 composer require siburuxue/doctrine-helper
+```
+
+## 同步数据库
+```shell
+php bin/console doctrine-helper:mapping:import App\\Entity attribute --path=src/Entity --ucfrist=true --table=dict,log --without-table-prefix=eq_
+php bin/console doctrine-helper:mapping:import --ucfirst=true
 ```
 
 ## 命令行选项
