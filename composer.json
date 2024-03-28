@@ -18,7 +18,7 @@
 	"require": {
 		"php": ">=8.2",
 		"symfony/http-client": "^6.4|^7.0",
-		"doctrine/dbal": "^3"
+		"doctrine/dbal": "^3|^4"
 	},
 	"require-dev": {
 		"symfony/console": "^6.4|^7.0",
