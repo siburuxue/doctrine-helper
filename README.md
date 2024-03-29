@@ -1,4 +1,4 @@
-<img src="./title.png" width="auto"/>
+<img src="./title-white.png" width="auto"/>
 
 English | [Chinese](README_zh.md)
 
