@@ -1,4 +1,5 @@
-# Doctrine Helper 
+<img src="./title.png" width="auto"/>
+
 English | [Chinese](README_zh.md)
 
 This tool provides an alternative to the `php bin/console doctrine:mapping:import App\\Entity attribute --path=src/Entity` command in Symfony 7, as the `doctrine:mapping:import` command has been removed in the latest versions. It allows for importing entity mappings from existing databases into Symfony applications.
