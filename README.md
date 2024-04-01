@@ -47,7 +47,7 @@ php bin/console doctrine-helper:mapping:import --ucfirst=true
 ## Command Line Options
 
 - `namespace`: The namespace for the Entity class (default: `App\Entity`)
-- `type`: Type of database field description (attribute, xml, yaml, php) (default: `attribute`)
+- `type`: Type of database field description (attribute, xml, yaml, php) (default: `attribute`, currently only support `attribute`)
 - `--path`: Path to store Entity class files (default: `src/Entity`)
 - `--ucfirst=true`: Generate Symfony 6 style Entities (private properties in camelCase) for seamless code migration (default: Symfony 7 style with underscored private properties)
 - `--table`: Import specific tables to generate corresponding Entity and Repository classes
