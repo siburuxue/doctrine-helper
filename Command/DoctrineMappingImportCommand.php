@@ -69,9 +69,14 @@ class DoctrineMappingImportCommand extends Command
         }
         $namespace = (string)$input->getArgument('namespace');
         $type = (string)$input->getArgument('type');
+        if(!empty($type) && !in_array($type, ["attribute", "xml", "yaml", "php"])){
+            $io->error("The specified export driver '{$type}' does not exist");
+            $io->warning("The option path only support yaml, xml, php, attribute");
+            return Command::FAILURE;
+        }
         $path = (string)$input->getOption('path');
         if (!empty($path)) {
-            $entityDir = $root . "/" . $path;
+            $entityDir = $root . "/" . $path . "/";
             if (!file_exists($entityDir)) {
                 mkdir($entityDir, 0755, true);
             }
