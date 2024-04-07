@@ -20,7 +20,8 @@
 		"symfony/http-client": "*",
 		"doctrine/dbal": "*",
 		"symfony/framework-bundle": "*",
-		"symfony/skeleton": "*"
+		"symfony/skeleton": "*",
+		"symfony/flex": "*"
 	},
 	"require-dev": {
 		"symfony/console": "*",
