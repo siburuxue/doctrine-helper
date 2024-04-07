@@ -16,15 +16,15 @@
 		}
 	],
 	"require": {
-		"php": ">=7.2|>=8.0",
-		"symfony/http-client": "^5.4|^6.4|^7.0",
-		"doctrine/dbal": "^3|^4",
-		"symfony/framework-bundle": "^5.4|^6.4|^7.0",
-		"symfony/skeleton": "^5|^6"
+		"php": "*",
+		"symfony/http-client": "*",
+		"doctrine/dbal": "*",
+		"symfony/framework-bundle": "*",
+		"symfony/skeleton": "*"
 	},
 	"require-dev": {
-		"symfony/console": "^5.4|^6.4|^7.0",
-		"symfony/http-kernel": "^5.4|^6.4|^7.0"
+		"symfony/console": "*",
+		"symfony/http-kernel": "*"
 	},
 	"autoload": {
 		"psr-4": {
