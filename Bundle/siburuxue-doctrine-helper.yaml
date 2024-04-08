@@ -1,4 +1,7 @@
 services:
-   doctrine-helper:
-       class: Doctrine\Helper\Command\DoctrineMappingImportCommand
-       tags: [console.command]
+    doctrine-helper:
+        class: Doctrine\Helper\Command\DoctrineMappingImportCommand
+        tags: [console.command]
+        arguments: 
+            - '@Doctrine\DBAL\Connection'
+            - '@Symfony\Component\HttpKernel\KernelInterface'
