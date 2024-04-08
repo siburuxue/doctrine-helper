@@ -1,27 +1,35 @@
 {
-	"name": "siburuxue/doctrine-helper",
-	"description": "instead of `php bin/console doctrine:mapping:import`",
-	"keywords": [
-		"doctrine",
-		"doctrine-helper",
-		"database",
-		"create entity from the existing database."
-	],
-	"license": "Apache-2.0",
-	"authors": [
-		{
-			"name": "zhang peng",
-			"email": "siburuxue@gmail.com",
-			"homepage": "https://github.com/siburuxue"
-		}
-	],
-	"require": {
+    "name": "siburuxue/doctrine-helper",
+    "description": "instead of `php bin/console doctrine:mapping:import`",
+    "keywords": [
+        "doctrine",
+        "doctrine-helper",
+        "database",
+        "create entity from the existing database."
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "zhang peng",
+            "email": "siburuxue@gmail.com",
+            "homepage": "https://github.com/siburuxue"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "symfony/http-client": "^7.0",
+        "doctrine/dbal": "^3|^4",
+        "symfony/framework-bundle": "^7.0",
+        "symfony/skeleton": "^6",
+        "symfony/flex": "*"
 	},
-	"require-dev": {
+    "require-dev": {
+        "symfony/console": "^7.0",
+        "symfony/http-kernel": "^7.0"
 	},
-	"autoload": {
-		"psr-4": {
-			"Doctrine\\Helper\\": ""
-		}
-	}
+    "autoload": {
+        "psr-4": {
+            "Doctrine\\Helper\\": ""
+        }
+    }
 }
