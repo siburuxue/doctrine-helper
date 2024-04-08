@@ -1,6 +1,6 @@
 services:
     # 生成文档命令
-    doctrine-helper:
-        class: Doctrine\Helper\Command\DoctrineMappingImportCommand
-        tags: [console.command]
-        arguments: ['@database_connection']
+#    doctrine-helper:
+#        class: Doctrine\Helper\Command\DoctrineMappingImportCommand
+#        tags: [console.command]
+#        arguments: ['@database_connection']
