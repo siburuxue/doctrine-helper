@@ -20,8 +20,7 @@
         "symfony/http-client": "^7.0",
         "doctrine/dbal": "^3|^4",
         "symfony/framework-bundle": "^7.0",
-        "symfony/skeleton": "^6",
-        "symfony/flex": "*"
+        "symfony/skeleton": "^6"
 	},
     "require-dev": {
         "symfony/console": "^7.0",
