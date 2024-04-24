@@ -107,7 +107,7 @@ To generate the corresponding Entity and Repository class files using the comman
 php bin/console doctrine-helper:mapping:import --ucfirst=true --table=test
 ```
 
-For example, the newly created Test entity class will look like this:
+The newly created Test entity class will look like this:
 
 ```php
 // src/Entity/Test.php
