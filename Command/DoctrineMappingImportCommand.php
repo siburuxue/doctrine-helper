@@ -85,18 +85,23 @@ class DoctrineMappingImportCommand extends Command
         $ucfirst = (string)$input->getOption('ucfirst');
         $withoutTablePrefix = (string)$input->getOption('without-table-prefix');
         $action = "\Doctrine\Helper\Driver\\$driver::create";
-        $action(
-            $namespace,
-            $type,
-            $tableList,
-            $ucfirst,
-            $withoutTablePrefix,
-            $database,
-            $entityDir,
-            $repositoryDir,
-            $this->connection,
-        )->import();
-        $io->success('Import success!');
-        return Command::SUCCESS;
+        try {
+            $action(
+                $namespace,
+                $type,
+                $tableList,
+                $ucfirst,
+                $withoutTablePrefix,
+                $database,
+                $entityDir,
+                $repositoryDir,
+                $this->connection,
+            )->import();
+            $io->success('Import success!');
+            return Command::SUCCESS;
+        }catch (\Exception $e){
+            $io->error($e->getMessage());
+            return Command::FAILURE;
+        }
     }
 }

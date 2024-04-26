@@ -63,11 +63,15 @@ abstract class Driver
 
     public function import(): void
     {
-        if (empty($this->tableList)) {
-            $tableList = static::getTableList();
-        } else {
-            $tableList = trim($this->tableList, ',');
-            $tableList = explode(',', $tableList);
+        $tableList = static::getTableList();
+        if (!empty($this->tableList)) {
+            $tables = trim($this->tableList, ',');
+            $tables = explode(',', $tables);
+            $diff = array_diff($tables, $tableList);
+            if(!empty($diff)){
+                throw new \Exception("Tables is not exist: " . implode(", ", $diff));
+            }
+            $tableList = $tables;
         }
         foreach ($tableList as $tableName) {
             $this->tableName = $tableName;
