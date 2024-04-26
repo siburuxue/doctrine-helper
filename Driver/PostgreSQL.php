@@ -219,7 +219,7 @@ EOF;
                 }else if ($type === 'timestamp without time zone') {
                     $ormColumnParam[] = "type: Types::DATETIME_MUTABLE";
                 }else if ($type === 'timestamp with time zone') {
-                    $ormColumnParam[] = "type: Types::DATETIMETZ_IMMUTABLE";
+                    $ormColumnParam[] = "type: Types::DATETIMETZ_MUTABLE";
                 } else if($type === 'uuid'){
                     $ormColumnParam[] = "type: Types::GUID";
                 }

@@ -173,7 +173,7 @@ EOF;
                     if($type == "DATE"){
                         $ormColumnParam[] = "type: Types::DATE_MUTABLE";
                     } else if(str_ends_with($type, "TIME ZONE")){
-                        $ormColumnParam[] = "type: Types::DATETIMETZ_IMMUTABLE";
+                        $ormColumnParam[] = "type: Types::DATETIMETZ_MUTABLE";
                     }else{
                         $ormColumnParam[] = "type: Types::DATETIME_MUTABLE";
                     }
