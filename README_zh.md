@@ -173,10 +173,10 @@ class Test
     #[ORM\Column(name: "str_2", length: 255, nullable: true, options: ["comment" => "varchar(255)"])]
     private ?string $str2 = null;
 
-    #[ORM\Column(name: "str_3", type: Types::BINARY, nullable: true, options: ["comment" => "binary"])]
+    #[ORM\Column(name: "str_3", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "binary"])]
     private $str3 = null;
 
-    #[ORM\Column(name: "str_4", type: Types::BINARY, nullable: true, options: ["comment" => "varbinary(1)"])]
+    #[ORM\Column(name: "str_4", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "varbinary(1)"])]
     private $str4 = null;
 
     #[ORM\Column(name: "str_5", type: Types::BLOB, nullable: true, options: ["comment" => "blob"])]
