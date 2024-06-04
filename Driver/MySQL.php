@@ -125,7 +125,7 @@ class MySQL extends Driver
                 }else if (in_array($type, ['datetime', 'timestamp', 'year'])) {
                     $ormColumnParam[] = "type: Types::DATETIME_MUTABLE";
                 }
-                if (in_array($type, ['char', 'varchar'])) {
+                if (in_array($type, ['char', 'varchar', 'binary', 'varbinary'])) {
                     $ormColumnParam[] = "length: {$characterMaximumLength}";
                 }
                 if (!empty($nullable)) {
