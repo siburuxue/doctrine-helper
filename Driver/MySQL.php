@@ -137,6 +137,11 @@ class MySQL extends Driver
                 if ($type === "char") {
                     $ormColumnOptionParam[] = "\"fixed\" => true";
                 }
+                if(in_array($type,["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal"])){
+                    $ormColumnOptionParam[] = "\"default\" => $columnDefault";
+                }elseif (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])){
+                    $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
+                }
                 if (!empty($ormColumnOptionParam)) {
                     $ormColumnParam[] = "options: [" . implode(', ', $ormColumnOptionParam) . "]";
                 }
@@ -161,23 +166,29 @@ class MySQL extends Driver
                     } else {
                         $properties .= "    private \${$columnName} = null;" . PHP_EOL . PHP_EOL;
                     }
-                } else {
-                    if (in_array($type, ['bigint', 'decimal', 'char', 'varchar'])) {
+                } else  if (in_array($type, ['bigint', 'decimal', 'char', 'varchar'])) {
                         if (isset($columnDefault)) {
                             $columnDefault = "'{$columnDefault}'";
                             $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
                         } else {
                             $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
                         }
+                } else if($type == 'set'){
+                    if (isset($columnDefault)) {
+                        $columnDefault = json_encode(explode(",", $columnDefault));
+                        $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
                     } else {
-                        if (isset($columnDefault)) {
-                            if (in_array($type, ['date', 'time', 'datetime', 'timestamp', 'year', 'text'])) {
-                                $columnDefault = 'null';
-                            }
-                            $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
-                        } else {
-                            $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
+                        $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
+                    }
+                }
+                else {
+                    if (isset($columnDefault)) {
+                        if (in_array($type, ['date', 'time', 'datetime', 'timestamp', 'year', 'text'])) {
+                            $columnDefault = 'null';
                         }
+                        $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
+                    } else {
+                        $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
                     }
                 }
             }
