@@ -141,7 +141,11 @@ class MySQL extends Driver
                     if (isset($columnDefault)){
                         $ormColumnOptionParam[] = "\"default\" => $columnDefault";
                     }
-                }elseif (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])){
+                }else if (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])){
+                    if (isset($columnDefault)){
+                        $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
+                    }
+                }else if (in_array($type, ["date", "time", "datetime", "timestamp", "year"])){
                     if (isset($columnDefault)){
                         $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
                     }
