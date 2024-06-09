@@ -138,9 +138,13 @@ class MySQL extends Driver
                     $ormColumnOptionParam[] = "\"fixed\" => true";
                 }
                 if(in_array($type,["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal"])){
-                    $ormColumnOptionParam[] = "\"default\" => $columnDefault";
+                    if (isset($columnDefault)){
+                        $ormColumnOptionParam[] = "\"default\" => $columnDefault";
+                    }
                 }elseif (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])){
-                    $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
+                    if (isset($columnDefault)){
+                        $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
+                    }
                 }
                 if (!empty($ormColumnOptionParam)) {
                     $ormColumnParam[] = "options: [" . implode(', ', $ormColumnOptionParam) . "]";
