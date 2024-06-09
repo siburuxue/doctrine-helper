@@ -60,29 +60,28 @@ Assuming your database contains a table called "test," which includes almost all
 ```sql
 create table test
 (
-    id     int                           not null,
-    int_1  int                           not null comment 'int',
-    int_2  smallint                      null comment 'smallint',
-    int_3  tinyint                       null comment 'tinyint',
-    int_4  mediumint                     null comment 'mediumint',
-    int_5  bigint                        not null comment 'bigint' primary key,
-    int_6  float                         null comment 'float',
-    int_7  double                        null comment 'double',
-    int_8  decimal                       null comment 'decimal',
-    date_1 date      default (curdate()) null comment 'date',
-    date_2 time      default (curtime()) null comment 'time',
-    date_3 datetime                      null comment 'datetime',
-    date_4 timestamp default (now())     null comment 'timestamp',
-    date_5 year                          null comment 'year',
-    str_1  char                          null comment 'char',
-    str_2  varchar(255)                  null comment 'varchar(255)',
-    str_3  binary(1)                     null comment 'binary',
-    str_4  varbinary(1)                  null comment 'varbinary(1)',
-    str_5  blob                          null comment 'blob',
-    str_6  text                          null comment 'text',
-    str_8  set ('a', 'b', 'c')           null comment 'set',
-    json_1 json                          null comment 'json',
-    bool_1 tinyint(1)                    null comment 'bool',
+    id     int                                     not null,
+    int_1  int                 default 1           not null comment 'int',
+    int_2  smallint            default 2           null comment 'smallint',
+    int_3  int                 default 3           null comment 'tinyint',
+    int_4  mediumint           default 4           null comment 'mediumint',
+    int_5  bigint                                  not null comment 'bigint'
+        primary key,
+    int_6  double              default 6           null comment 'float',
+    int_7  double              default 7           null comment 'double',
+    int_8  decimal             default 8           null comment 'decimal',
+    date_1 date                default (curdate()) null comment 'date',
+    date_2 time                default (curtime()) null comment 'time',
+    date_3 datetime            default (now())     null comment 'datetime',
+    date_4 datetime            default (now())     null comment 'timestamp',
+    date_5 datetime            default (now())     null comment 'year',
+    str_1  char                default 'a'         null comment 'char',
+    str_2  varchar(255)        default 'b'         null comment 'varchar(255)',
+    str_3  varbinary(1)        default 0x63        null comment 'binary',
+    str_4  varbinary(1)        default 0x64        null comment 'varbinary(1)',
+    str_8  set ('a', 'b', 'c') default 'a,b'       null comment 'set',
+    json_1 json                                    null comment 'json',
+    bool_1 int                 default 0           null comment 'bool',
     constraint I_int_2
         unique (int_2) comment '唯一索引'
 )
@@ -98,7 +97,6 @@ create index I_int_3
 
 create index I_int_4
     on test (int_6);
-
 ```
 
 To generate the corresponding Entity and Repository class files using the command:
@@ -133,68 +131,62 @@ class Test
     #[ORM\Column(name: "id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "int_1", options: ["comment" => "int"])]
-    private ?int $int1 = null;
+    #[ORM\Column(name: "int_1", options: ["comment" => "int", "default" => 1])]
+    private ?int $int1 = 1;
 
-    #[ORM\Column(name: "int_2", type: Types::SMALLINT, nullable: true, options: ["comment" => "smallint"])]
-    private ?int $int2 = null;
+    #[ORM\Column(name: "int_2", type: Types::SMALLINT, nullable: true, options: ["comment" => "smallint", "default" => 2])]
+    private ?int $int2 = 2;
 
-    #[ORM\Column(name: "int_3", nullable: true, options: ["comment" => "tinyint"])]
-    private ?int $int3 = null;
+    #[ORM\Column(name: "int_3", nullable: true, options: ["comment" => "tinyint", "default" => 3])]
+    private ?int $int3 = 3;
 
-    #[ORM\Column(name: "int_4", nullable: true, options: ["comment" => "mediumint"])]
-    private ?int $int4 = null;
+    #[ORM\Column(name: "int_4", nullable: true, options: ["comment" => "mediumint", "default" => 4])]
+    private ?int $int4 = 4;
 
-    #[ORM\Column(name: "int_6", nullable: true, options: ["comment" => "float"])]
-    private ?float $int6 = null;
+    #[ORM\Column(name: "int_6", nullable: true, options: ["comment" => "float", "default" => 6])]
+    private ?float $int6 = 6;
 
-    #[ORM\Column(name: "int_7", nullable: true, options: ["comment" => "double"])]
-    private ?float $int7 = null;
+    #[ORM\Column(name: "int_7", nullable: true, options: ["comment" => "double", "default" => 7])]
+    private ?float $int7 = 7;
 
-    #[ORM\Column(name: "int_8", type: Types::DECIMAL, precision: 10, scale: 0, nullable: true, options: ["comment" => "decimal"])]
-    private ?string $int8 = null;
+    #[ORM\Column(name: "int_8", type: Types::DECIMAL, precision: 10, scale: 0, nullable: true, options: ["comment" => "decimal", "default" => 8])]
+    private ?string $int8 = '8';
 
-    #[ORM\Column(name: "date_1", type: Types::DATE_MUTABLE, nullable: true, options: ["comment" => "date"])]
+    #[ORM\Column(name: "date_1", type: Types::DATE_MUTABLE, nullable: true, options: ["comment" => "date", "default" => 'curdate()'])]
     private ?\DateTimeInterface $date1 = null;
 
-    #[ORM\Column(name: "date_2", type: Types::TIME_MUTABLE, nullable: true, options: ["comment" => "time"])]
+    #[ORM\Column(name: "date_2", type: Types::TIME_MUTABLE, nullable: true, options: ["comment" => "time", "default" => 'curtime()'])]
     private ?\DateTimeInterface $date2 = null;
 
-    #[ORM\Column(name: "date_3", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "datetime"])]
+    #[ORM\Column(name: "date_3", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "datetime", "default" => 'now()'])]
     private ?\DateTimeInterface $date3 = null;
 
-    #[ORM\Column(name: "date_4", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "timestamp"])]
+    #[ORM\Column(name: "date_4", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "timestamp", "default" => 'now()'])]
     private ?\DateTimeInterface $date4 = null;
 
-    #[ORM\Column(name: "date_5", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "year"])]
+    #[ORM\Column(name: "date_5", type: Types::DATETIME_MUTABLE, nullable: true, options: ["comment" => "year", "default" => 'now()'])]
     private ?\DateTimeInterface $date5 = null;
 
-    #[ORM\Column(name: "str_1", length: 1, nullable: true, options: ["comment" => "char", "fixed" => true])]
-    private ?string $str1 = null;
+    #[ORM\Column(name: "str_1", length: 1, nullable: true, options: ["comment" => "char", "fixed" => true, "default" => 'a'])]
+    private ?string $str1 = 'a';
 
-    #[ORM\Column(name: "str_2", length: 255, nullable: true, options: ["comment" => "varchar(255)"])]
-    private ?string $str2 = null;
+    #[ORM\Column(name: "str_2", length: 255, nullable: true, options: ["comment" => "varchar(255)", "default" => 'b'])]
+    private ?string $str2 = 'b';
 
-    #[ORM\Column(name: "str_3", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "binary"])]
-    private $str3 = null;
+    #[ORM\Column(name: "str_3", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "binary", "default" => '0x63'])]
+    private $str3 = 0x63;
 
-    #[ORM\Column(name: "str_4", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "varbinary(1)"])]
-    private $str4 = null;
+    #[ORM\Column(name: "str_4", type: Types::BINARY, length: 1, nullable: true, options: ["comment" => "varbinary(1)", "default" => '0x64'])]
+    private $str4 = 0x64;
 
-    #[ORM\Column(name: "str_5", type: Types::BLOB, nullable: true, options: ["comment" => "blob"])]
-    private $str5 = null;
-
-    #[ORM\Column(name: "str_6", type: Types::TEXT, nullable: true, options: ["comment" => "text"])]
-    private ?string $str6 = null;
-
-    #[ORM\Column(name: "str_8", type: Types::SIMPLE_ARRAY, nullable: true, options: ["comment" => "set"])]
-    private ?array $str8 = null;
+    #[ORM\Column(name: "str_8", type: Types::SIMPLE_ARRAY, nullable: true, options: ["comment" => "set", "default" => 'a,b'])]
+    private ?array $str8 = ["a","b"];
 
     #[ORM\Column(name: "json_1", nullable: true, options: ["comment" => "json"])]
     private ?array $json1 = null;
 
-    #[ORM\Column(name: "bool_1", nullable: true, options: ["comment" => "bool"])]
-    private ?int $bool1 = null;
+    #[ORM\Column(name: "bool_1", nullable: true, options: ["comment" => "bool", "default" => 0])]
+    private ?int $bool1 = 0;
 
     public function getInt5(): ?string
     {
@@ -408,30 +400,6 @@ class Test
     public function setStr4($str4): static
     {
         $this->str4 = $str4;
-
-        return $this;
-    }
-
-    public function getStr5()
-    {
-        return $this->str5;
-    }
-
-    public function setStr5($str5): static
-    {
-        $this->str5 = $str5;
-
-        return $this;
-    }
-
-    public function getStr6(): ?string
-    {
-        return $this->str6;
-    }
-
-    public function setStr6(?string $str6): static
-    {
-        $this->str6 = $str6;
 
         return $this;
     }
