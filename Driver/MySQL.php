@@ -101,7 +101,7 @@ class MySQL extends Driver
             }
             $ormColumnOptionParam = [];
             if(in_array($type, ["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal", "char",
-                "varchar", "varbinary", "binary", "blob", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
+                "varchar", "varbinary", "binary", "blob", "mediumblob", "longblob", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
                 if ($type === 'smallint') {
                     $ormColumnParam[] = "type: Types::SMALLINT";
                 } else if ($type === 'bigint') {
@@ -112,7 +112,7 @@ class MySQL extends Driver
                     $ormColumnParam[] = "scale: $numericScale";
                 } else if (in_array($type, ['binary', 'varbinary'])) {
                     $ormColumnParam[] = "type: Types::BINARY";
-                } else if ($type === 'blob') {
+                } else if ($type === 'blob' || $type === 'mediumblob' || $type === 'longblob') {
                     $ormColumnParam[] = "type: Types::BLOB";
                 } else if ($type === 'text' || $type === 'mediumtext' || $type === 'longtext') {
                     $ormColumnParam[] = "type: Types::TEXT";
@@ -168,7 +168,7 @@ class MySQL extends Driver
                     }
                     $properties .= "    #[ORM\GeneratedValue({$strategy})]" . PHP_EOL;
                 }
-                if (in_array($type, ['binary', 'varbinary', 'blob'])) {
+                if (in_array($type, ['binary', 'varbinary', 'blob', 'mediumblob', 'longblob'])) {
                     if (isset($columnDefault)) {
                         $properties .= "    private \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
                     } else {
@@ -216,7 +216,7 @@ class MySQL extends Driver
                     $getSet .= "    }" . PHP_EOL . PHP_EOL;
                 }
             }
-            if(in_array($type, ["varbinary", "binary", "blob"])){
+            if(in_array($type, ["varbinary", "binary", "blob", 'mediumblob', 'longblob'])){
                 $getSet .= "    public function get{$functionName}()" . PHP_EOL;
                 $getSet .= "    {" . PHP_EOL;
                 $getSet .= "        return \$this->{$columnName};" . PHP_EOL;
