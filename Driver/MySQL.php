@@ -88,7 +88,7 @@ class MySQL extends Driver
                 }
             }
             $varType = match ($type) {
-                "bigint", "decimal", "varchar", "char", "text" => "string",
+                "bigint", "decimal", "varchar", "char", "text", "mediumtext", "longtext" => "string",
                 "smallint", "tinyint", "mediumint" => "int",
                 "double" => "float",
                 "set", "json" => "array",
@@ -101,7 +101,7 @@ class MySQL extends Driver
             }
             $ormColumnOptionParam = [];
             if(in_array($type, ["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal", "char",
-                "varchar", "varbinary", "binary", "blob", "text", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
+                "varchar", "varbinary", "binary", "blob", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
                 if ($type === 'smallint') {
                     $ormColumnParam[] = "type: Types::SMALLINT";
                 } else if ($type === 'bigint') {
@@ -114,7 +114,7 @@ class MySQL extends Driver
                     $ormColumnParam[] = "type: Types::BINARY";
                 } else if ($type === 'blob') {
                     $ormColumnParam[] = "type: Types::BLOB";
-                } else if ($type === 'text') {
+                } else if ($type === 'text' || $type === 'mediumtext' || $type === 'longtext') {
                     $ormColumnParam[] = "type: Types::TEXT";
                 } else if ($type === 'set') {
                     $ormColumnParam[] = "type: Types::SIMPLE_ARRAY";
@@ -191,7 +191,7 @@ class MySQL extends Driver
                 }
                 else {
                     if (isset($columnDefault)) {
-                        if (in_array($type, ['date', 'time', 'datetime', 'timestamp', 'year', 'text'])) {
+                        if (in_array($type, ['date', 'time', 'datetime', 'timestamp', 'year', 'text', 'mediumtext', 'longtext'])) {
                             $columnDefault = 'null';
                         }
                         $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
@@ -202,7 +202,7 @@ class MySQL extends Driver
             }
             $functionName = $this->upperName($item['COLUMN_NAME']);
             if(in_array($type, ["int", "smallint", "bigint", "tinyint", "mediumint", "float", "double", "decimal", "char",
-                "varchar", "text", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
+                "varchar", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
                 $getSet .= "    public function get{$functionName}(): ?{$varType}" . PHP_EOL;
                 $getSet .= "    {" . PHP_EOL;
                 $getSet .= "        return \$this->{$columnName};" . PHP_EOL;
