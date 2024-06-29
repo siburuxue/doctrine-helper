@@ -55,10 +55,10 @@ class MySQL extends Driver
     {
         $properties = "";
         $getSet = "";
-        $primaryArray = array_filter($this->tableInfo,function($v){
+        $primaryArray = array_filter($this->tableInfo, function ($v) {
             return $v['COLUMN_KEY'] === 'PRI';
         });
-        $othersArray = array_filter($this->tableInfo,function($v){
+        $othersArray = array_filter($this->tableInfo, function ($v) {
             return $v['COLUMN_KEY'] !== 'PRI';
         });
         $this->tableInfo = [];
@@ -100,8 +100,8 @@ class MySQL extends Driver
                 $ormColumnParam[] = "name: \"{$item['COLUMN_NAME']}\"";
             }
             $ormColumnOptionParam = [];
-            if(in_array($type, ["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal", "char",
-                "varchar", "varbinary", "binary", "blob", "mediumblob", "longblob", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
+            if (in_array($type, ["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal", "char",
+                "varchar", "varbinary", "binary", "blob", "mediumblob", "longblob", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])) {
                 if ($type === 'smallint') {
                     $ormColumnParam[] = "type: Types::SMALLINT";
                 } else if ($type === 'bigint') {
@@ -118,11 +118,11 @@ class MySQL extends Driver
                     $ormColumnParam[] = "type: Types::TEXT";
                 } else if ($type === 'set') {
                     $ormColumnParam[] = "type: Types::SIMPLE_ARRAY";
-                }else if($type === 'date'){
+                } else if ($type === 'date') {
                     $ormColumnParam[] = "type: Types::DATE_MUTABLE";
-                }else if($type === 'time'){
+                } else if ($type === 'time') {
                     $ormColumnParam[] = "type: Types::TIME_MUTABLE";
-                }else if (in_array($type, ['datetime', 'timestamp', 'year'])) {
+                } else if (in_array($type, ['datetime', 'timestamp', 'year'])) {
                     $ormColumnParam[] = "type: Types::DATETIME_MUTABLE";
                 }
                 if (in_array($type, ['char', 'varchar', 'binary', 'varbinary'])) {
@@ -137,16 +137,16 @@ class MySQL extends Driver
                 if ($type === "char") {
                     $ormColumnOptionParam[] = "\"fixed\" => true";
                 }
-                if(in_array($type,["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal"])){
-                    if (isset($columnDefault)){
+                if (in_array($type, ["int", "smallint", "tinyint", "mediumint", "bigint", "float", "double", "decimal"])) {
+                    if (isset($columnDefault)) {
                         $ormColumnOptionParam[] = "\"default\" => $columnDefault";
                     }
-                }else if (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])){
-                    if (isset($columnDefault)){
+                } else if (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])) {
+                    if (isset($columnDefault)) {
                         $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
                     }
-                }else if (in_array($type, ["date", "time", "datetime", "timestamp", "year"])){
-                    if (isset($columnDefault)){
+                } else if (in_array($type, ["date", "time", "datetime", "timestamp", "year"])) {
+                    if (isset($columnDefault)) {
                         $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
                     }
                 }
@@ -174,22 +174,21 @@ class MySQL extends Driver
                     } else {
                         $properties .= "    private \${$columnName} = null;" . PHP_EOL . PHP_EOL;
                     }
-                } else  if (in_array($type, ['bigint', 'decimal', 'char', 'varchar'])) {
-                        if (isset($columnDefault)) {
-                            $columnDefault = "'{$columnDefault}'";
-                            $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
-                        } else {
-                            $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
-                        }
-                } else if($type == 'set'){
+                } else if (in_array($type, ['bigint', 'decimal', 'char', 'varchar'])) {
+                    if (isset($columnDefault)) {
+                        $columnDefault = "'{$columnDefault}'";
+                        $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
+                    } else {
+                        $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
+                    }
+                } else if ($type == 'set') {
                     if (isset($columnDefault)) {
                         $columnDefault = json_encode(explode(",", $columnDefault));
                         $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
                     } else {
                         $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
                     }
-                }
-                else {
+                } else {
                     if (isset($columnDefault)) {
                         if (in_array($type, ['date', 'time', 'datetime', 'timestamp', 'year', 'text', 'mediumtext', 'longtext'])) {
                             $columnDefault = 'null';
@@ -201,8 +200,8 @@ class MySQL extends Driver
                 }
             }
             $functionName = $this->upperName($item['COLUMN_NAME']);
-            if(in_array($type, ["int", "smallint", "bigint", "tinyint", "mediumint", "float", "double", "decimal", "char",
-                "varchar", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])){
+            if (in_array($type, ["int", "smallint", "bigint", "tinyint", "mediumint", "float", "double", "decimal", "char",
+                "varchar", "text", "mediumtext", "longtext", "set", "json", "date", "time", "datetime", "timestamp", "year"])) {
                 $getSet .= "    public function get{$functionName}(): ?{$varType}" . PHP_EOL;
                 $getSet .= "    {" . PHP_EOL;
                 $getSet .= "        return \$this->{$columnName};" . PHP_EOL;
@@ -216,7 +215,7 @@ class MySQL extends Driver
                     $getSet .= "    }" . PHP_EOL . PHP_EOL;
                 }
             }
-            if(in_array($type, ["varbinary", "binary", "blob", 'mediumblob', 'longblob'])){
+            if (in_array($type, ["varbinary", "binary", "blob", 'mediumblob', 'longblob'])) {
                 $getSet .= "    public function get{$functionName}()" . PHP_EOL;
                 $getSet .= "    {" . PHP_EOL;
                 $getSet .= "        return \$this->{$columnName};" . PHP_EOL;
