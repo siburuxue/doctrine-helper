@@ -15,7 +15,8 @@
 ## 支持的字段类型
 
 ### MySQL
-- 不支持`bit`和`enum`类型
+- 不支持`bit`类型
+- 在支持`enum`类型时，需要设置 [mapping_types](https://symfony.com/doc/current/doctrine/dbal.html#registering-custom-mapping-types-in-the-schematool)
 - 将类似类型转换为相似类型（例如，`double`转换为`float`）
 
 ### PostgreSQL

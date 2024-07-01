@@ -15,7 +15,8 @@ This tool provides an alternative to the `php bin/console doctrine:mapping:impor
 ## Supported Field Types
 
 ### MySQL
-- Does not support `bit` and `enum` types
+- Does not support `bit` types
+- When supporting `enum` types, you need to set [mapping_types](https://symfony.com/doc/current/doctrine/dbal.html#registering-custom-mapping-types-in-the-schematool)
 - Converts similar types (e.g., `double` to `float`)
 
 ### PostgreSQL
