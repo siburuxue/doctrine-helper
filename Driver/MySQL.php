@@ -147,7 +147,7 @@ class MySQL extends Driver
                     }
                 } else if (in_array($type, ["set", "char", "varchar", 'binary', 'varbinary'])) {
                     if (isset($columnDefault)) {
-                        $ormColumnOptionParam[] = "\"default\" => '$columnDefault'";
+                        $ormColumnOptionParam[] = "\"default\" => '" . str_replace("'", "\'", $columnDefault) . "'";
                     }
                 } else if (in_array($type, ["date", "time", "datetime", "timestamp", "year"])) {
                     if (isset($columnDefault)) {
