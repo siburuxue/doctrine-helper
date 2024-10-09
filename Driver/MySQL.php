@@ -180,7 +180,7 @@ class MySQL extends Driver
                     }
                 } else if (in_array($type, ['bigint', 'decimal', 'char', 'varchar', 'enum'])) {
                     if (isset($columnDefault)) {
-                        $columnDefault = "'{$columnDefault}'";
+                        $columnDefault = "'" . str_replace("'", "\'", $columnDefault) . "'";
                         $properties .= "    private ?{$varType} \${$columnName} = {$columnDefault};" . PHP_EOL . PHP_EOL;
                     } else {
                         $properties .= "    private ?{$varType} \${$columnName} = null;" . PHP_EOL . PHP_EOL;
