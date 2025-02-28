@@ -45,6 +45,7 @@ class DoctrineMappingImportCommand extends Command
             ->addOption('path', "", InputOption::VALUE_OPTIONAL, "the Entity's path, src/Entity on default")
             ->addOption('table', "t", InputOption::VALUE_OPTIONAL, 'the import tables of the database')
             ->addOption('ucfirst', "", InputOption::VALUE_OPTIONAL, 'convert first character of word to uppercase')
+            ->addOption('schema', "", InputOption::VALUE_OPTIONAL, 'when connecting to a postgresql database, synchronize the tables of the specified schema')
             ->addOption('without-table-prefix', "", InputOption::VALUE_OPTIONAL, 'without table prefix');
     }
 
@@ -83,6 +84,16 @@ class DoctrineMappingImportCommand extends Command
         }
         $tableList = (string)$input->getOption('table');
         $ucfirst = (string)$input->getOption('ucfirst');
+        $schema = (string)$input->getOption('schema');
+        // 手动指定schema, postgresql数据库专用
+        if(!empty($schema)){
+            if($param['driver'] == "pdo_mysql" || $param['driver'] == "pgsql"){
+                $this->connection->executeStatement('SET search_path TO ' . $schema);
+            }else{
+                // 目前只有postgresql中这个参数才有意义，其他数据库不需要这个参数，所以设置成空，以凸显schema不为空时必定链接的是postgresql
+                $schema = "";
+            }
+        }
         $withoutTablePrefix = (string)$input->getOption('without-table-prefix');
         $action = "\Doctrine\Helper\Driver\\$driver::create";
         try {
@@ -96,6 +107,7 @@ class DoctrineMappingImportCommand extends Command
                 $entityDir,
                 $repositoryDir,
                 $this->connection,
+                $schema,
             )->import();
             $io->success('Import success!');
             return Command::SUCCESS;

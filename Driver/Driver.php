@@ -10,6 +10,8 @@ abstract class Driver
     public array $tableInfo = [];
     public string $entityName = "";
 
+    public string $schemaStr = "";
+
     public function __construct(
         public string $namespace,
         public string $type,
@@ -20,12 +22,16 @@ abstract class Driver
         public string $entityDir,
         public string $repositoryDir,
         public Connection $connection,
+        public string $schema,
     ) {
         if (empty($namespace)) {
             $this->namespace = "App\\Entity";
         }
         if (empty($type)) {
             $this->type = "attribute";
+        }
+        if(!empty($this->schema)){
+            $this->schemaStr = ", schema: '{$this->schema}'";
         }
     }
 
@@ -47,6 +53,7 @@ abstract class Driver
         string $entityDir,
         string $repositoryDir,
         Connection $connection,
+        string $schema,
     ) {
         return new static(
             $namespace,
@@ -58,6 +65,7 @@ abstract class Driver
             $entityDir,
             $repositoryDir,
             $connection,
+            $schema,
         );
     }
 
@@ -184,7 +192,7 @@ use App\Repository\\{$entityName}Repository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: '{$this->tableName}')]{$indexes}
+#[ORM\Table(name: '{$this->tableName}'{$this->schemaStr})]{$indexes}
 #[ORM\Entity(repositoryClass: {$entityName}Repository::class)]
 class {$entityName}
 {
