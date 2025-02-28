@@ -9,8 +9,8 @@ abstract class Driver
     public string $tableName = '';
     public array $tableInfo = [];
     public string $entityName = "";
-
     public string $schemaStr = "";
+    public string $schemaName = "";
 
     public function __construct(
         public string $namespace,
@@ -32,6 +32,12 @@ abstract class Driver
         }
         if(!empty($this->schema)){
             $this->schemaStr = ", schema: '{$this->schema}'";
+        }
+        if(!empty($this->schema)){
+            $this->schemaStr = ", schema: '{$this->schema}'";
+            $this->schemaName = $this->schema;
+        }else{
+            $this->schemaName = 'public';
         }
     }
 

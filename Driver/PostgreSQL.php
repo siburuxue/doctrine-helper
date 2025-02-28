@@ -8,7 +8,7 @@ class PostgreSQL extends Driver
 {
     public function getTableList(): array
     {
-        $rs = $this->connection->fetchAllAssociative("SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public'");
+        $rs = $this->connection->fetchAllAssociative("SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = '{$this->schemaName}'");
         return array_column($rs, 'tablename');
     }
 
