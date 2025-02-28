@@ -87,7 +87,7 @@ class DoctrineMappingImportCommand extends Command
         $schema = (string)$input->getOption('schema');
         // 手动指定schema, postgresql数据库专用
         if(!empty($schema)){
-            if($param['driver'] == "pdo_mysql" || $param['driver'] == "pgsql"){
+            if($param['driver'] == "pdo_pgsql" || $param['driver'] == "pgsql"){
                 $this->connection->executeStatement('SET search_path TO ' . $schema);
             }else{
                 // 目前只有postgresql中这个参数才有意义，其他数据库不需要这个参数，所以设置成空，以凸显schema不为空时必定链接的是postgresql
