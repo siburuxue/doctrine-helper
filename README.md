@@ -53,6 +53,7 @@ php bin/console doctrine-helper:mapping:import --ucfirst=true
 - `--ucfirst=true`: Generate Symfony 6 style Entities (private properties in camelCase) for seamless code migration (default: Symfony 7 style with underscored private properties)
 - `--table`: Import specific tables to generate corresponding Entity and Repository classes
 - `--without-table-prefix`: Ignore table prefix when generating Entities
+- `--schema`: when connecting to a postgresql database, synchronize the tables of the specified schema (postgresql only)
 
 In this article, we'll use MySQL as an example to demonstrate the generation result.
 

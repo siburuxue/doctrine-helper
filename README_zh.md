@@ -53,6 +53,7 @@ php bin/console doctrine-helper:mapping:import --ucfirst=true
 - `--ucfirst=true`：生成Symfony 6风格的实体类（私有属性使用驼峰命名规则），以实现代码无缝迁移（默认为Symfony 7风格，私有属性使用下划线）
 - `--table`：导入指定表以生成相应的实体类和存储库类
 - `--without-table-prefix`：生成实体类时忽略表前缀
+- `--schema`：在链接postgresql数据库时，同步指定schema的表（仅postgresql数据库可用）
 
 本文以MySQL为例，展示生成Entity结果。
 
