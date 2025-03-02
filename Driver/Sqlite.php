@@ -103,7 +103,6 @@ EOF;
             if ($this->ucfirst === 'true') {
                 $ormColumnParam[] = "name: \"{$item['name']}\"";
             }
-            $ormColumnOptionParam = [];
             if(in_array($type, ["int", "integer", "smallint", "mediumint", "bigint", "real", "float", "double", "double precision", "decimal",
                 "varchar", "nvarchar", "blob", "clob", "text", "date", "datetime", "boolean"])){
                 if ($type === 'smallint') {
@@ -129,12 +128,6 @@ EOF;
                 }
                 if (!empty($nullable)) {
                     $ormColumnParam[] = $nullable;
-                }
-                if (!empty($columnComment)) {
-                    $ormColumnOptionParam[] = "\"comment\" => \"{$columnComment}\"";
-                }
-                if (!empty($ormColumnOptionParam)) {
-                    $ormColumnParam[] = "options: [" . implode(', ', $ormColumnOptionParam) . "]";
                 }
                 if (empty($ormColumnParam)) {
                     $properties .= "    #[ORM\Column]" . PHP_EOL;
