@@ -41,7 +41,7 @@ composer require siburuxue/doctrine-helper
 
 ## Synchronize database tables to the project
 ```shell
-php bin/console doctrine-helper:mapping:import App\\Entity attribute --path=src/Entity --ucfrist=true --table=dict,log --without-table-prefix=eq_
+php bin/console doctrine-helper:mapping:import App\\Entity attribute --path=src/Entity --ucfirst=true --table=dict,log --without-table-prefix=eq_
 php bin/console doctrine-helper:mapping:import --ucfirst=true
 ```
 
