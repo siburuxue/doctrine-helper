@@ -20,7 +20,7 @@ class MySQL extends Driver
 
     public function makeIndexes(): string
     {
-        $sql = "show index from {$this->tableName} from {$this->database} where key_name <> 'PRIMARY'";
+        $sql = "show index from `{$this->tableName}` from {$this->database} where key_name <> 'PRIMARY'";
         $rs = $this->connection->fetchAllAssociative($sql);
         if (empty($rs)) {
             return "";
